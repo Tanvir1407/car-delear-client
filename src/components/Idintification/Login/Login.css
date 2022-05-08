@@ -1,0 +1,23 @@
+.login-form{
+    max-width: 450px;
+}
+.login-form input {
+    width: 100%;
+    border-radius: 20px;
+}
+.submit-btn{
+    width: 98% !important;
+}
+.forget-btn{
+    width: 243px;
+}
+.or{
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgb(116, 116, 116);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+.or >span{
+        padding:0 10px;
+}

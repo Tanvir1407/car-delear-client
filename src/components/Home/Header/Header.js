@@ -2,6 +2,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 
 const Header = () => {
@@ -26,8 +27,12 @@ const Header = () => {
           alt=""
         />
       </Navbar.Brand>
-      <Nav className={`d-flex flex-column flex-md-row  duration-500 ease-in ${open ?'top-6' :'top[-120px]'}`}>
-        <Nav.Link className="font-semibold">HOME</Nav.Link>
+      <Nav
+        className={`d-flex flex-column flex-md-row  duration-500 ease-in ${
+          open ? "top-6" : "top[-120px]"
+        }`}
+      >
+        <Nav.Link as={Link} to='home' className="font-semibold">HOME</Nav.Link>
         <Nav.Link className="font-semibold">BLOGS</Nav.Link>
         <Nav.Link className="font-semibold">INVENTORY</Nav.Link>
         {user && (
@@ -39,7 +44,8 @@ const Header = () => {
         {user ? (
           <button className="font-semibold">SIGN OUT</button>
         ) : (
-          <button className="font-semibold">LOGIN</button>
+
+            <Nav.Link as={Link} to='login' className="font-semibold">LOGIN</Nav.Link>
         )}
       </Nav>
     </Navbar>

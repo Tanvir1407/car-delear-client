@@ -29,12 +29,13 @@ const News = () => {
                 POST BY JOHN DOE
               </span>
             </p>
-            <p className="max-w-lg mt-12 text-lg font-semibold text-gray-400">
+            <p className="max-w-lg mt-12 text-lg text-base text-gray-400">
               White is a very popular colour with car buyers, but is it
-              something you should consider for your own new car? <br /><br /> To help point
-              you in the right direction, here’s carwow’s guide on the pros and
-              cons of picking white paint.
+              something you should consider for your own new car? <br />
+              <br /> To help point you in the right direction, here’s carwow’s
+              guide on the pros and cons of picking white paint.
             </p>
+            <button className="text-gray-500 duration-500 ease-linear hover:bg-red-600 hover:text-white  font-medium border px-3 py-2">Read More </button>
           </div>
         </div>
       </div>
