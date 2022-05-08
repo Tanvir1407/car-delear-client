@@ -2,18 +2,19 @@ import React from 'react';
 
 const Feature = () => {
     return (
-      <div>
-        <div className="d-flex bg-black py-16">
-          <div className="w-50">
+      <div className="mx-auto w-100">
+        <div className="d-flex flex-column-reverse flex-md-row bg-black py-16">
+          <div className=" ">
             <img
+              width={700}
               src={
                 "https://i.ibb.co/TgzkckZ/wp4114933-lamborghini-car-wallpapers.jpg"
               }
               alt=""
             />
           </div>
-          <div className=" my-16 w-50">
-            <h1 className=" text-blue-500 text-center font-extrabold text-6xl">
+          <div className=" my-16  ">
+            <h1 className=" text-blue-500 text-center font-extrabold ">
               {" "}
               LAMBORGHINI
             </h1>
@@ -26,6 +27,9 @@ const Feature = () => {
             </p>
             <p className="text-yellow-50 font-semibold text-center text-2xl">
               LIMITED TIME OFFER!
+            </p>
+            <p className="text-red-400 hover:cursor-pointer duration-300 hover:text-red-600 text-center text-xl">
+              Read More
             </p>
           </div>
         </div>
