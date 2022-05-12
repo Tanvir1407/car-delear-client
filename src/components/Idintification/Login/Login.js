@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import auth from '../../../firebase.init'
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -8,8 +8,10 @@ import GoogleLogIn from './GoogleLogIn/GoogleLogIn';
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  
-  
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location?.state?.from?.pathname || '/';
   
   
     const handleLogIn = (e) => {
@@ -18,7 +20,8 @@ const Login = () => {
       const password = e.target.password.value;
       signInWithEmailAndPassword(email,password)
       e.target.reset()
-      console.log(user, error)
+      console.log(from);
+      navigate(from,{replace:true})
     }
     return (
       <div>
