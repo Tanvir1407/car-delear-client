@@ -1,12 +1,24 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import auth from '../../../firebase.init'
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import GoogleLogIn from './GoogleLogIn/GoogleLogIn';
 
 const Login = () => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  
+  
+  
+  
     const handleLogIn = (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      signInWithEmailAndPassword(email,password)
+      e.target.reset()
+      console.log(user, error)
     }
     return (
       <div>
@@ -29,9 +41,10 @@ const Login = () => {
               className="p-2 px-3 m-2 focus:outline-none"
             />
             <br />
-            <button className="forget-btn text-end btn btn-link text-red-400  pe-auto text-decoration-none">
-              Forget Password?
-            </button>
+
+              <button className="btn  text-end btn btn-link text-decoration-none">
+                Forget Password?
+              </button>
             <input
               type="submit"
               value="LOGIN"
@@ -41,12 +54,12 @@ const Login = () => {
 
           <div className="mt-10">
             <button className="underline text-blue-600">
-              <Link to='/signin'>Create an Account</Link>
+              <Link to="/signin">Create an Account</Link>
             </button>
             <div className="or">
               <span className="bg-blue-300">OR</span>
             </div>
-            <button className='bg-orange-600 mt-3 p-2 px-3 rounded text-white'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Login with Google</button>
+            <GoogleLogIn></GoogleLogIn>
           </div>
         </div>
       </div>

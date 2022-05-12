@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Home/Header/Header';
 import HomePage from './components/Home/HomePage/HomePage';
+import Inventory from './components/Home/Inventory/Inventory';
 import Login from './components/Idintification/Login/Login';
 import SignIn from './components/Idintification/SignIn/SignIn';
 
