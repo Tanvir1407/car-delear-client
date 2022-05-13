@@ -6,6 +6,7 @@ import Login from './components/Idintification/Login/Login';
 import RequireAuth from './components/Idintification/RequireAuth/RequireAuth';
 import SignIn from './components/Idintification/SignIn/SignIn';
 import ManageInventory from './components/pages/ManageInventory/ManageInventory';
+import Update from './components/pages/Update/Update';
 
 
 function App() {
@@ -25,6 +26,14 @@ function App() {
           element={
             <RequireAuth>
               <ManageInventory></ManageInventory>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <Update></Update>
             </RequireAuth>
           }
         ></Route>

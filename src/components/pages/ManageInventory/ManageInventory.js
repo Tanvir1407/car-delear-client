@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ManageInventory = () => {
     const [cars, setCars] = useState([]);
@@ -6,9 +7,13 @@ const ManageInventory = () => {
         fetch("http://localhost:5000/inventory")
             .then(res => res.json())
             .then(data=>setCars(data))
-    },[])
+    }, [])
+    const navigate = useNavigate();
+    const NavigateToUpdate = (id) => {
+          navigate(`/inventory/${id}`);
+    }
     return (
-      <div className='mt-10'>
+      <div className="mt-10">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -37,10 +42,14 @@ const ManageInventory = () => {
                   <td>{car.price}</td>
                   <td>{car.quantity}</td>
                   <td>
-                    <button>Update</button>
+                    <button onClick={()=>NavigateToUpdate(car._id)} className="py-2 px-3 rounded text-white bg-green-500 hover:bg-green-600 duration-300">
+                      Update
+                    </button>
                   </td>
                   <td>
-                    <button>Delete</button>
+                    <button className="py-2 px-3 rounded text-white bg-red-500 hover:bg-red-600 duration-300">
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </>
