@@ -1,16 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import useInventory from '../../../Hooks/useInventory';
+import useQuantity from '../../../Hooks/useQuantity';
 import { useParams } from 'react-router-dom';
 import './Update.css';
 
 const Update = () => {
     const id = useParams();
-    const [car, setCar] = useState({}); 
-    useEffect(() => {
-        const url = `http://localhost:5000/inventory/${id.id}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data=>setCar(data))
-    },[])
+  const [car, setCar] = useInventory(id.id);
+  const [Quantity] = useQuantity(id.id);
+
+
+  const handleDelivered = () => {
+    
+    fetch(`http://localhost:5000/update/${id.id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(Quantity)
+    })
+      .then(res => res.json())
+      .then(data => console.log(data)) 
+    
+  }; 
+  const handleInsert = (e) => {
+    e.preventDefault()
+    const quantity = e.target.quantity.value;
+    console.log(quantity);
+    e.target.reset()
+  }; 
     return (
       <div className="container mt-16">
         <div className="row border-2 p-3 rounded ">
@@ -31,11 +48,14 @@ const Update = () => {
                 About: {car.description}
               </p>
               <div className="d-flex flex-column flex-md-row items-center justify-between">
-                <button className=" h-10 px-3 bg-red-500 duration-150 text-white rounded hover:bg-red-600">
+                <button
+                  onClick={handleDelivered}
+                  className=" h-10 px-3 bg-red-500 duration-150 text-white rounded hover:bg-red-600"
+                >
                   Delivered
                 </button>
-                <div className='my-3'>
-                  <form className='d-flex flex-column flex-sm-row'>
+                <div className="my-3">
+                  <form onSubmit={handleInsert} className="d-flex flex-column flex-sm-row">
                     <input
                       className="p-2 focus:outline-none border rounded text-green-600 "
                       type="number"

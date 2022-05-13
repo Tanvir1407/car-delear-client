@@ -10,7 +10,7 @@ const ManageInventory = () => {
     }, [])
     const navigate = useNavigate();
     const NavigateToUpdate = (id) => {
-          navigate(`/inventory/${id}`);
+          navigate(`/manageinventory/${id}`);
     }
     return (
       <div className="mt-10">
@@ -28,7 +28,7 @@ const ManageInventory = () => {
           <tbody>
             {cars.map((car) => (
               <>
-                <tr>
+                <tr key={car._id}>
                   <td>
                     <img
                       className="h-16 rounded-r-full"
@@ -42,7 +42,10 @@ const ManageInventory = () => {
                   <td>{car.price}</td>
                   <td>{car.quantity}</td>
                   <td>
-                    <button onClick={()=>NavigateToUpdate(car._id)} className="py-2 px-3 rounded text-white bg-green-500 hover:bg-green-600 duration-300">
+                    <button
+                      onClick={() => NavigateToUpdate(car._id)}
+                      className="py-2 px-3 rounded text-white bg-green-500 hover:bg-green-600 duration-300"
+                    >
                       Update
                     </button>
                   </td>

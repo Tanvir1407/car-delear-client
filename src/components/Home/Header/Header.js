@@ -11,7 +11,6 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
     const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
-  console.log(user);
   const handleSignOut = () => {
      signOut(auth)
    }
