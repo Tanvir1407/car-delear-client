@@ -55,7 +55,7 @@ const Header = () => {
               {" "}
               ADD ITEM
             </Nav.Link>
-            <Nav.Link className="font-semibold"> MY ITEM</Nav.Link>
+            <Nav.Link as={Link} to='/myitem' className="font-semibold"> MY ITEM</Nav.Link>
           </>
         )}
 

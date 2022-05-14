@@ -21,8 +21,9 @@ const AddItem = () => {
             .then(data=>console.log(data))
     };
     return (
-      <div>
-        <div className=" border-2 border-blue-400  p-16 mx-auto rounded login-form">
+      <div className='my-16'>
+        <h3 className='text-center mb-4 shadow-white'>Add new inventory item</h3>
+        <div className=" border-2 shadow border-blue-400  p-16 mx-auto rounded login-form">
           <form onSubmit={hamdleAddItem}>
             <input
               type="name"
@@ -30,7 +31,7 @@ const AddItem = () => {
               placeholder="Name"
               id=""
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400 "
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400 "
             />{" "}
             <br />
             <input
@@ -40,7 +41,7 @@ const AddItem = () => {
               min="1"
               placeholder="Price"
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400"
             />
             <br />
             <input
@@ -49,7 +50,7 @@ const AddItem = () => {
               id=""
               placeholder="Picture URL"
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400"
             />
             <br />
             <input
@@ -58,7 +59,7 @@ const AddItem = () => {
               id=""
               placeholder="Quantity"
               min="0"
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400"
             />
             <br />
             <input
@@ -67,7 +68,7 @@ const AddItem = () => {
               placeholder=" Distributor Name"
               id=""
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400"
             />
             <br />
             <input
@@ -75,7 +76,7 @@ const AddItem = () => {
               name="description"
               placeholder="About"
               id=""
-              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
+              className="p-2 px-3 m-2 focus:outline-none border-2 border-blue-400"
             />
             <br />
             <input

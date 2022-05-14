@@ -8,6 +8,7 @@ import SignIn from './components/Idintification/SignIn/SignIn';
 import ManageInventory from './components/pages/ManageInventory/ManageInventory';
 import Update from './components/pages/Update/Update';
 import AddItem from './components/pages/AddItem/AddItem';
+import MyItem from './components/pages/MyItem/MyItem';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<HomePage></HomePage>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
+        <Route path="/myitem" element={<MyItem></MyItem>}></Route>
         <Route
           path="/additem"
           element={

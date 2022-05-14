@@ -7,10 +7,26 @@ const ManageInventory = () => {
         fetch("http://localhost:5000/inventory")
             .then(res => res.json())
             .then(data=>setCars(data))
-    }, [])
+    }, [cars])
     const navigate = useNavigate();
     const NavigateToUpdate = (id) => {
           navigate(`/manageinventory/${id}`);
+  }
+    
+  const handleDeleteItem = (id) => {
+    const proceed = window.confirm('Are you sure you want to Delete?');
+    if (proceed) {
+      fetch(`http://localhost:5000/delete/${id}`, {
+        method : "DELETE"
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.deleteCount > 0) {
+            const remaining = cars.filter(car => car._id !== id);
+            setCars(remaining);
+          }
+        })
+    }
     }
     return (
       <div className="mt-10">
@@ -50,7 +66,7 @@ const ManageInventory = () => {
                     </button>
                   </td>
                   <td>
-                    <button className="py-2 px-3 rounded text-white bg-red-500 hover:bg-red-600 duration-300">
+                    <button onClick={()=>handleDeleteItem(car._id)} className="py-2 px-3 rounded text-white bg-red-500 hover:bg-red-600 duration-300">
                       Delete
                     </button>
                   </td>
@@ -60,7 +76,7 @@ const ManageInventory = () => {
           </tbody>
         </table>
         <div className="w-60 mx-auto ">
-          <Link to="/additem" >
+          <Link to="/additem">
             <button className="border-2 mb-20 text-xl border-red-400 hover:text-white duration-300 hover:bg-red-400 py-2 px-4 font-bold text-red-500">
               Add New Item
             </button>
