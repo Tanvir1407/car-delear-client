@@ -8,7 +8,7 @@ const useQuantity = (id) => {
             .then(data =>setQuantity(data))
     }, [])
     
-    return [quantity];
+    return [quantity.carQuantity];
 }
 
 export default useQuantity;

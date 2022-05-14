@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ManageInventory = () => {
     const [cars, setCars] = useState([]);
@@ -59,6 +59,13 @@ const ManageInventory = () => {
             ))}
           </tbody>
         </table>
+        <div className="w-40 mx-auto ">
+          <Link to="/additem">
+            <button className="border-2 mb-20 text-2xl border-red-400 hover:text-white duration-300 hover:bg-red-400 py-2 px-4 font-bold text-red-500">
+              Add New Item
+            </button>
+          </Link>
+        </div>
       </div>
     );
 };
