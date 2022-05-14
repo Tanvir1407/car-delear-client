@@ -24,7 +24,7 @@ const Header = () => {
         )}
       </div>
       <Navbar.Brand>
-        <Nav.Link as={Link} to='/'>
+        <Nav.Link as={Link} to="/">
           <img
             height={50}
             width={150}
@@ -44,11 +44,17 @@ const Header = () => {
           HOME
         </Nav.Link>
         <Nav.Link className="font-semibold">BLOGS</Nav.Link>
-        <Nav.Link  className="font-semibold">ABOUT</Nav.Link>
+        <Nav.Link className="font-semibold">ABOUT</Nav.Link>
         {user && (
           <>
-            <Nav.Link className="font-semibold"> MANAGE ITEM</Nav.Link>
-            <Nav.Link as={Link} to='/additem' className="font-semibold"> ADD ITEM</Nav.Link>
+            <Nav.Link as={Link} to="/manageinventory" className="font-semibold">
+              {" "}
+              MANAGE ITEM
+            </Nav.Link>
+            <Nav.Link as={Link} to="/additem" className="font-semibold">
+              {" "}
+              ADD ITEM
+            </Nav.Link>
             <Nav.Link className="font-semibold"> MY ITEM</Nav.Link>
           </>
         )}

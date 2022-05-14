@@ -59,9 +59,9 @@ const ManageInventory = () => {
             ))}
           </tbody>
         </table>
-        <div className="w-40 mx-auto ">
-          <Link to="/additem">
-            <button className="border-2 mb-20 text-2xl border-red-400 hover:text-white duration-300 hover:bg-red-400 py-2 px-4 font-bold text-red-500">
+        <div className="w-60 mx-auto ">
+          <Link to="/additem" >
+            <button className="border-2 mb-20 text-xl border-red-400 hover:text-white duration-300 hover:bg-red-400 py-2 px-4 font-bold text-red-500">
               Add New Item
             </button>
           </Link>

@@ -22,7 +22,7 @@ const AddItem = () => {
     };
     return (
       <div>
-        <div className="bg-blue-300  p-16 mx-auto rounded login-form">
+        <div className=" border-2 border-blue-400  p-16 mx-auto rounded login-form">
           <form onSubmit={hamdleAddItem}>
             <input
               type="name"
@@ -30,7 +30,7 @@ const AddItem = () => {
               placeholder="Name"
               id=""
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400 "
             />{" "}
             <br />
             <input
@@ -40,7 +40,7 @@ const AddItem = () => {
               min="1"
               placeholder="Price"
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
             />
             <br />
             <input
@@ -49,7 +49,7 @@ const AddItem = () => {
               id=""
               placeholder="Picture URL"
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
             />
             <br />
             <input
@@ -58,7 +58,7 @@ const AddItem = () => {
               id=""
               placeholder="Quantity"
               min="0"
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
             />
             <br />
             <input
@@ -67,7 +67,7 @@ const AddItem = () => {
               placeholder=" Distributor Name"
               id=""
               autoComplete="on"
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
             />
             <br />
             <input
@@ -75,13 +75,13 @@ const AddItem = () => {
               name="description"
               placeholder="About"
               id=""
-              className="p-2 px-3 m-2 focus:outline-none"
+              className="p-2 px-3 m-2 focus:outline-none border-1 border-blue-400"
             />
             <br />
             <input
               type="submit"
               value="ADD ITEM"
-              className="m-2 p-1 hover:bg-blue-400 duration-300 ease-linear text-yellow-50 font-semibold border-2 submit-btn"
+              className="m-2 p-2 hover:border-red-500 hover:text-red-500 duration-300 border-1 border-blue-400 ease-linear text-blue-400 font-semibold border-2 submit-btn"
             />
           </form>
         </div>
