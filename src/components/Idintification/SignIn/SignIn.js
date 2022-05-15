@@ -1,21 +1,29 @@
 import React from 'react';
 import auth from "../../../firebase.init";
-import { useCreateUserWithEmailAndPassword} from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification} from "react-firebase-hooks/auth";
 import { useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const [createUserWithEmailAndPassword, user, loading, error] =
-      useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading] =
+    useCreateUserWithEmailAndPassword(auth);
+  
+    const [sendEmailVerification, sending,error] =
+    useSendEmailVerification(auth);
 
     const handleSignIn = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-
-      createUserWithEmailAndPassword(email,password)
+      if (email) {
+        sendEmailVerification()
+        alert("Please Verify Your Email")
+        createUserWithEmailAndPassword(email, password);
+      }
+      
+      
       event.target.reset()
       navigate('/login')
     }
