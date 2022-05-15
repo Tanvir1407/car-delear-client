@@ -21,8 +21,7 @@ const AddItem = () => {
             },
             body: JSON.stringify(newItem) 
         })
-            .then(res => res.json())
-            .then(data=>console.log(data))
+      e.target.reset();
     };
     return (
       <div className='my-16'>

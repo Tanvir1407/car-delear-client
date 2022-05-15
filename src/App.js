@@ -10,6 +10,7 @@ import Update from './components/pages/Update/Update';
 import AddItem from './components/pages/AddItem/AddItem';
 import MyItem from './components/pages/MyItem/MyItem';
 import NotFound from './components/pages/NotFound/NotFound';
+import Blogs from './components/pages/Blogs/Blogs';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/home" element={<HomePage></HomePage>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route
           path="/myitem"
           element={
