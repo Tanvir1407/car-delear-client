@@ -14,9 +14,6 @@ const Items = (props) => {
             <p className="text-gray-600 font-medium">
               About: {car.description}
             </p>
-            <button  className="bg-red-300 w-100 text-white hover:bg-red-400 duration-300 font-semibold text-xl  py-2 border-2 border-red-400 bottom-0">
-              Update
-            </button>
           </div>
         </div>
       </div>

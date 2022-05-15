@@ -1,6 +1,10 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 
 const AddItem = () => {
+  const [user] = useAuthState(auth)
+  const email = user?.email;
     const hamdleAddItem = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -9,7 +13,7 @@ const AddItem = () => {
         const quantity = e.target.quantity.value;
         const supplier = e.target.supplier.value;
         const description = e.target.description.value;
-        const newItem = { name, price, picture, quantity, supplier, description };
+        const newItem = { name, price, picture, quantity, supplier, description ,email};
         fetch("http://localhost:5000/inventory", {
             method: 'POST',
             headers: {
