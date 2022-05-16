@@ -59,7 +59,7 @@ const ManageInventory = () => {
                   <h5>{car.name}</h5>
                 </td>
                 <td>{car.price}</td>
-                <td>{car.quantity}</td>
+                <td>{car.quantity <= 0 ? <p className="text-rose-600 font-semibold">Sold Out</p> : car.quantity}</td>
                 <td>
                   <button
                     onClick={() => NavigateToUpdate(car._id)}

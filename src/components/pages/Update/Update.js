@@ -17,9 +17,8 @@ const Update = () => {
   //delevered functionality
   const handleDelivered = () => {
     const NewQuantity = quantity - 1;
-    setQuantity(NewQuantity);
+
     const updateQuantity = { Quantity: quantity };
-    console.log(NewQuantity);
     fetch(`https://pure-stream-67963.herokuapp.com/update/${id.id}`, {
       method: "PUT",
       headers: {
@@ -27,6 +26,7 @@ const Update = () => {
       },
       body: JSON.stringify(updateQuantity),
     });
+    setQuantity(NewQuantity);
   };
 
   // add quantity
@@ -35,7 +35,7 @@ const Update = () => {
     const insertQuantity = parseInt(e.target.quantity.value);
     const totalQuantity = quantity + insertQuantity;
     const newQuantity = { Quantity: totalQuantity };
-    setQuantity(newQuantity.Quantity);
+    
     fetch(`https://pure-stream-67963.herokuapp.com/insert/${id.id}`, {
       method: "PUT",
       headers: {
@@ -43,7 +43,7 @@ const Update = () => {
       },
       body: JSON.stringify(newQuantity),
     });
-
+    setQuantity(newQuantity.Quantity);
     e.target.reset();
   };
   return (
@@ -59,7 +59,9 @@ const Update = () => {
           <div className="col-md-8 px-4 info">
             <h4>Distributor: {info.supplier}</h4>
             <h5 className="text-red-400">Price: {info.price}</h5>
-            <p className="text-green-500 font-bold">Quantity: {quantity}</p>
+            <p className="text-green-500 font-bold">
+              Quantity: {quantity <= 0 ? <p className="text-red-500 font-bold d-inline">Sold Out</p> : quantity}
+            </p>
             <p className="text-gray-600 font-serif">
               About: {info.description}
             </p>
