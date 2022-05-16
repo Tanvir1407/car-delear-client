@@ -2,26 +2,47 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import axios from 'axios';
 
 const MyItem = () => {
-    const [user] = useAuthState(auth)
-    const [myItem,setMyItem ] =useState([])
-    const userEmail = user?.email
+  const [user] = useAuthState(auth);
+  const [myItem, setMyItem] = useState([]);
+  const [proceed, setProceed] = useState();
+
   
   //get inventory item by user email
     useEffect(() => {
-      fetch(`http://localhost:5000/myitem?email=${userEmail}`)
-        .then((res) => res.json())
-        .then((data) => setMyItem(data));
-    }, [myItem]);
+      // fetch(`http://localhost:5000/myitem?email=${userEmail}`, {
+      //   headers: {
+      //     authorization:`Bearer ${localStorage.getItem("accessToken")}`,
+      //   },
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => setMyItem(data));
+
+      const getMyItems = async () => {
+        const userEmail = user?.email;
+        const url = `http://localhost:5000/myitem?email=${userEmail}`;
+        const { data } = await axios.get(url, {
+          headers: {
+            authorization:`Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+        setMyItem(data)
+      }
+      getMyItems()
+    }, [user, proceed]);
+  
+  
         const navigate = useNavigate(); 
-    const NavigateToUpdate = (id) => {
+        const NavigateToUpdate = (id) => {
           navigate(`/manageinventory/${id}`);
   }
   
   //delete single inventory item  by Id 
     const handleDeleteItem = (id) => {
-         const proceed = window.confirm("Are you sure you want to Delete?");
+      const proceed = window.confirm("Are you sure you want to Delete?");
+      setProceed(proceed)
          if (proceed) {
            fetch(`http://localhost:5000/delete/${id}`, {
              method: "DELETE",
@@ -33,7 +54,8 @@ const MyItem = () => {
                 setMyItem(remaining);
                }
              });
-         }
+      }
+      
     }
 
     return (

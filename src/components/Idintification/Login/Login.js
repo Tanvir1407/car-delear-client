@@ -5,7 +5,7 @@ import auth from '../../../firebase.init'
 import {  useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import GoogleLogIn from './GoogleLogIn/GoogleLogIn';
 import Loading from '../../../components/Idintification/RequireAuth/Loading/Loading';
-
+import axios from "axios";
 const Login = () => {
     const [
     signInWithEmailAndPassword,
@@ -28,11 +28,15 @@ const Login = () => {
   if (loading) {
     return<Loading></Loading>
   }
-  const handleLogIn = (e) => {
+  const handleLogIn = async(e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInWithEmailAndPassword(email, password)
+
+    await signInWithEmailAndPassword(email, password)
+    const { data } = await axios.post("http://localhost:5000/login", {email});
+    localStorage.setItem('accessToken', data.accessToken);
+
     e.target.reset();
   }
 
