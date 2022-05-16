@@ -7,7 +7,8 @@ const MyItem = () => {
     const [user] = useAuthState(auth)
     const [myItem,setMyItem ] =useState([])
     const userEmail = user?.email
-
+  
+  //get inventory item by user email
     useEffect(() => {
       fetch(`http://localhost:5000/myitem?email=${userEmail}`)
         .then((res) => res.json())
@@ -16,7 +17,9 @@ const MyItem = () => {
         const navigate = useNavigate(); 
     const NavigateToUpdate = (id) => {
           navigate(`/manageinventory/${id}`);
-    }
+  }
+  
+  //delete single inventory item  by Id 
     const handleDeleteItem = (id) => {
          const proceed = window.confirm("Are you sure you want to Delete?");
          if (proceed) {

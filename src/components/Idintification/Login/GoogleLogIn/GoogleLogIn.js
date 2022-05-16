@@ -13,11 +13,12 @@ const GoogleLogIn = () => {
 
   const from = location?.state?.from?.pathname || '/';
 
+  
   const handleGoogleLogin = () => {
-      signInWithGoogle()
-      .then(() => {
-      navigate(from, {replace:true})
-    })
+      signInWithGoogle() //when Click Google Log In Button
+        .then(() => {
+          navigate(from, { replace: true });
+        });
   }
     return (
       <button

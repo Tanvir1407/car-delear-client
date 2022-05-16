@@ -1,34 +1,53 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import auth from '../../../firebase.init'
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {  useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import GoogleLogIn from './GoogleLogIn/GoogleLogIn';
+import Loading from '../../../components/Idintification/RequireAuth/Loading/Loading';
 
 const Login = () => {
-  const [signInWithEmailAndPassword, error] =
-    useSignInWithEmailAndPassword(auth);
-  
+    const [
+    signInWithEmailAndPassword,
+    loggedInUser,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+    
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location?.state?.from?.pathname || '/';
-  
-  
-  
-    const handleLogIn = (e) => {
-      e.preventDefault();
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      signInWithEmailAndPassword(email,password)
-      e.target.reset();
-      navigate(from, { replace: true })
-      
+
+  useEffect(() => {
+    if (!loading && loggedInUser) {
+      navigate(from, { replace: true });
     }
+  }, [loggedInUser, loading, navigate, from]);
+    
+  if (loading) {
+    return<Loading></Loading>
+  }
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signInWithEmailAndPassword(email, password)
+    e.target.reset();
+  }
+
     return (
-      <div>
+      <div className="mt-20">
         <div className="bg-blue-300  p-16 mx-auto rounded login-form">
           <form onSubmit={handleLogIn}>
+            <div className={error ? "d-block" : "d-none"}>
+              <p
+              
+                className={`ml-4 py-2 px-2  bg-red-600 rounded text-white `}
+              >
+                Your Email or password is wrong{" "}
+              </p>
+            </div>
             <input
               type="email"
               name="email"
@@ -46,10 +65,9 @@ const Login = () => {
               className="p-2 px-3 m-2 focus:outline-none"
             />
             <br />
-
-              <button className="btn  text-end btn btn-link text-decoration-none">
-                Forget Password?
-              </button>
+            <button className="btn  text-end btn btn-link text-decoration-none">
+              Forget Password?
+            </button>
             <input
               type="submit"
               value="LOGIN"
@@ -58,7 +76,7 @@ const Login = () => {
           </form>
 
           <div className="mt-10">
-            <button className="underline text-blue-600">
+            <button className=" ml-4 underline text-blue-600">
               <Link to="/signin">Create an Account</Link>
             </button>
             <div className="or">

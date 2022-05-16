@@ -14,7 +14,8 @@ const Update = () => {
       .then(data => setQuantity(data.carQuantity))
   
   }, [quantity]);
-
+  
+  //delevered functionality
   const handleDelivered = () => {
     const NewQuantity = quantity - 1;
     setQuantity(NewQuantity);
@@ -29,6 +30,8 @@ const Update = () => {
     })
     
   }
+
+  // add quantity 
   const handleAddQuantity = (e) => {
     e.preventDefault()
     const insertQuantity = parseInt(e.target.quantity.value);

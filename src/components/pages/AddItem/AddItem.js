@@ -6,15 +6,19 @@ const AddItem = () => {
   const [user] = useAuthState(auth)
   const email = user?.email;
     const hamdleAddItem = (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      
+      //get all value by user input
         const name = e.target.name.value;
         const price = `$${e.target.price.value}`;
         const picture = e.target.picture.value;
         const quantity = e.target.quantity.value;
         const supplier = e.target.supplier.value;
         const description = e.target.description.value;
-        const newItem = { name, price, picture, quantity, supplier, description ,email};
-        fetch("http://localhost:5000/inventory", {
+      
+      const newItem = { name, price, picture, quantity, supplier, description ,email};
+      //value send server  
+      fetch("http://localhost:5000/inventory", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

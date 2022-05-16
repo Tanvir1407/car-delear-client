@@ -5,12 +5,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { signOut } from 'firebase/auth';
+import Loading from '../../Idintification/RequireAuth/Loading/Loading';
 
 const Header = () => {
-    const [user] = useAuthState(auth);
+    const [user,loading] = useAuthState(auth);
   const handleSignOut = () => {
      signOut(auth)
-   }
+  }
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ManageInventory = () => {
-    const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState([]);
+  
+  //get all inventory item from server
     useEffect(() => {
         fetch("http://localhost:5000/inventory")
             .then(res => res.json())
@@ -13,6 +15,7 @@ const ManageInventory = () => {
           navigate(`/manageinventory/${id}`);
   }
     
+  //inventory delete functionality 
   const handleDeleteItem = (id) => {
     const proceed = window.confirm('Are you sure you want to Delete?');
     if (proceed) {

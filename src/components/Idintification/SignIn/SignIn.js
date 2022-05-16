@@ -1,7 +1,8 @@
 import React from 'react';
 import auth from "../../../firebase.init";
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification} from "react-firebase-hooks/auth";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../RequireAuth/Loading/Loading';
 
 
 const SignIn = () => {
@@ -11,16 +12,21 @@ const SignIn = () => {
   
     const [sendEmailVerification, sending,error] =
     useSendEmailVerification(auth);
-
-    const handleSignIn = (event) => {
+  
+    if (loading) {
+      return <Loading></Loading>;
+  }
+  
+    const handleSignIn = async (event) => { //Sign in Function
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
-        const password = event.target.password.value;
+      const password = event.target.password.value;
+      
+      await createUserWithEmailAndPassword(email, password);
       if (email) {
-        sendEmailVerification()
+        sendEmailVerification() //Email Verification 
         alert("Please Verify Your Email")
-        createUserWithEmailAndPassword(email, password);
       }
       
       
@@ -29,7 +35,7 @@ const SignIn = () => {
     }
 
     return (
-      <div>
+      <div className="mt-16">
         <div className="bg-blue-300  p-16 mx-auto rounded login-form">
           <form onSubmit={handleSignIn}>
             <input
@@ -47,7 +53,7 @@ const SignIn = () => {
               id=""
               autoComplete="on"
               className="p-2 px-3 m-2 focus:outline-none"
-            />
+            />{" "}
             <br />
             <input
               type="password"
@@ -57,12 +63,15 @@ const SignIn = () => {
               className="p-2 px-3 m-2 focus:outline-none"
             />
             <br />
-
             <input
               type="submit"
               value="SIGN UP"
               className="m-2 p-1 hover:bg-blue-400 duration-300 ease-linear text-yellow-50 font-semibold border-2 submit-btn"
             />
+            <br />
+            <button className="ml-4 mt-6 underline text-blue-600">
+              <Link to="/login">Already have an Account</Link>
+            </button>
           </form>
         </div>
       </div>
